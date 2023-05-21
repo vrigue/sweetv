@@ -51,8 +51,38 @@
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    font-size: 20px;
+    font-size: 14px;
     padding: 12px 24px;
     cursor: pointer;
     border-radius: 5px;
-  }
+}
+
+
+.card {
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    margin: 5px;
+    padding: 10px;
+    text-align: left;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.btn:hover {
+    background-color: #7c618f;
+    color: #ebe0f1;
+    border-color: #220430;
+    color: #543563;
+}

@@ -11,23 +11,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap" rel="stylesheet">
 
-    <!-- ruins the menu bar -->
-    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
     <link rel="stylesheet" href="../stylesheets/navbar.css">
     <link rel="stylesheet" href="../stylesheets/menu.css">
 
     <!-- slick -->
-    
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" />
     <link rel="stylesheet" href="../stylesheets/showcase.css">
 </head>
 
 <body>
     <div class="row secondary-back-color">
-        <h4 class="center"><small class="regular">made to order, handcrafted flavors</small></h4>
+        <h4 class="center"><small class="regular">our humble selection:</small></h4>
     </div>
     <!-- eventually menu bar partial -->
     <header>
@@ -58,52 +56,134 @@
   </div> -->
 
     <div class="row secondary-back-color">
-        <h2 class="center"><small class="regular">made to order, handcrafted flavors</small></h2>
+        <h5 class="left"><small class="regular">made to order, handcrafted flavors</small></h5>
     </div>
 
     <br>
 
-    <!-- perhaps an alternative to the grid system using foundation - would fix up some of the foundation/mini css conflict -->
-    <!-- <div class="card">
-        <img src="..\images\ube.jpeg" class="section media"/>
+    <!-- example
+    <div class="card">
+        <img src="..\images\ube.jpeg" class="section media" />
+        <div class="section"></div>
+        <div class="section dark">
+    </div>
     </div> -->
 
-    <div class="row small-up-2 medium-up-4 large-up-6">
-        <div class="column">
-            <img class="thumbnail" src="..\images\ube.jpeg">
-            <h5>Ube Cookies</h5>
-            <p>$12</p>
-            <a href="item_detail.html" class="button small expanded hollow">Buy</a>
+    <!-- 4x4 grid for products display -->
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <img class="thumbnail" src="..\images\matcha.jpeg">
-            <h5>Purple Cupcakes</h5>
-            <p>$15</p>
-            <a href="item_detail.html" class="button small expanded hollow">Buy</a>
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <img class="thumbnail" src="..\images\ube.jpeg">
-            <h5>Ube Cookies</h5>
-            <p>$12</p>
-            <a href="item_detail.html" class="button small expanded hollow">Buy</a>
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <img class="thumbnail" src="..\images\matcha.jpeg">
-            <h5>Purple Cupcakes</h5>
-            <p>$15</p>
-            <a href="item_detail.html" class="button small expanded hollow">Buy</a>
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <img class="thumbnail" src="..\images\ube.jpeg">
-            <h5>Ube Cookies</h5>
-            <p>$12</p>
-            <a href="item_detail.html" class="button small expanded hollow">Buy</a>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <img class="thumbnail" src="..\images\matcha.jpeg">
-            <h5>Purple Cupcakes</h5>
-            <p>$15</p>
-            <a href="item_detail.html" class="button small expanded hollow">Buy</a>
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <img src="..\images\ube.jpeg" alt="purple ube cookies">
+                <div class="card-body">
+                    <div class="section">
+                        <p class="description">Purple Ube Cookies</p>
+                    </div>
+                    <div class="section dark">
+                        <p class="price">$12</p>
+                    </div>
+                    <button href="item_detail.html" class="btn btn-primary">Add to Order</button>
+                </div>
+            </div>
         </div>
     </div>
 
