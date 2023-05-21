@@ -1,0 +1,34 @@
+:root {
+    --header-back-color: #f4edf7;
+    --header-border-color: #dec6ea;
+    --header-fore-color: #543563;
+    --secondary-fore-color: white;
+    --header-hover-back-color: #e9d2f4;
+}
+
+.regular {
+    font-family: 'Alice', serif;
+}
+
+.title {
+    font-family: 'Parisienne', cursive;
+    position: absolute;
+}
+
+
+.center {
+    margin: auto;
+    padding: 12px;
+}
+
+.right_align {
+    position: absolute;
+    right: 0;
+    padding-right: 15px;
+}
+
+
+.secondary-back-color {
+    background-color: #664178;
+}
+
