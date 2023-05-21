@@ -1,0 +1,58 @@
+:root {
+    --back-color: #f4edf7;
+    --button-back-color: #dec6ea;
+    --button-fore-color: #543563;
+    --button-hover-back-color: #f5e8fc;
+}
+
+.main_bg {
+    position: absolute;
+    top: 40.8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #dec6ea;
+    height: 45px;
+    width: 325px;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.bg_text {
+    position: absolute;
+    top: 40%;
+    left: 49.6%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 100px;
+    color: white;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.main_text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 100px;
+    color: #543563;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.main_btn {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 20px;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
