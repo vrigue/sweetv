@@ -72,3 +72,17 @@ img {
     height: auto;
     filter: drop-shadow(15px 15px #dec6ea);
 }
+
+h1 {
+    font-size: 65px;
+    color: #543563;
+    padding-top: 125px;
+    padding-left: 50px;
+}
+
+p {
+    font-size: 19px;
+    color: #392444;
+    padding-top: 25px;
+    padding-left: 50px;
+}

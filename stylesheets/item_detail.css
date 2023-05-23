@@ -1,0 +1,54 @@
+:root {
+    --back-color: #f4edf7;
+    --button-back-color: #dec6ea;
+    --button-fore-color: #543563;
+    --button-hover-back-color: #f5e8fc;
+    --collapse-label-back-color: #fffbfb;
+    --collapse-label-hover-back-color: #f5e8fc;
+    --collapse-selected-label-back-color: #ebd9f3;
+    --collapse-selected-label-border-color: #543563;
+    --collapse-content-back-color: #ebd9f3;
+}
+
+.center_special {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -0%);
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    margin: 5px;
+    padding: 10px;
+    text-align: left;
+}
+
+.card img {
+    width: 85%;
+    height: auto;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    filter: drop-shadow(10px 10px #dec6ea);
+}
+
+.collapse {
+    padding-top: 3px;
+}
+
+.collapse label {
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #7c618f;
+    color: #ebe0f1;
+    border-color: #220430;
+    color: #543563;
+}
+
+#page-title {
+    text-align: center;
+}
