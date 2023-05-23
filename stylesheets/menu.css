@@ -5,6 +5,12 @@
     --button-hover-back-color: #f5e8fc;
 }
 
+.center_special {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -0%);
+}
+
 .main_bg {
     position: absolute;
     top: 40.8%;
@@ -84,4 +90,8 @@
     color: #ebe0f1;
     border-color: #220430;
     color: #543563;
+}
+
+#page-title {
+    text-align: center;
 }

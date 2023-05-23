@@ -1,0 +1,13 @@
+.order {
+    max-width: 250px;
+    max-height: 150px;
+}
+
+.order_text {
+    font-family: "Times New Roman", Times, serif;
+    text-align: left;
+    vertical-align: middle;
+    /* position: relative; */
+    left: 5%;
+    /* transform: translate(-50%, -0%); */
+}
