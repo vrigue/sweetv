@@ -10,6 +10,14 @@ app.get( "/", ( req, res ) => {
     res.sendFile( __dirname + "/views/index.html" );
 } );
 
+app.get( "/order", ( req, res ) => {
+    res.sendFile( __dirname + "/views/order.html" );
+} );
+
+app.get( "/about", ( req, res ) => {
+    res.sendFile( __dirname + "/views/order.html" );
+} );
+
 app.get( "/menu", ( req, res ) => {
     res.sendFile( __dirname + "/views/menu.html" );
 } );
