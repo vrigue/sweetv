@@ -3,13 +3,14 @@ const db = require("./db_connection");
 /**** CLEANUP ****/
 db.execute("DROP TABLE IF EXISTS `item_pic_xref`;");
 db.execute("DROP TABLE IF EXISTS `order_item_xref`;");
-db.execute("DROP TABLE IF EXISTS `order`;");
+db.execute("DROP TABLE IF EXISTS `orders`;");
 db.execute("DROP TABLE IF EXISTS `item`;");
 db.execute("DROP TABLE IF EXISTS `picture`;");
 db.execute("DROP TABLE IF EXISTS `user`;");
 
 /**** TABLES  ****/
 
+// USER
 db.execute(`
     CREATE TABLE user (
         user_id INT NOT NULL AUTO_INCREMENT,
@@ -17,116 +18,220 @@ db.execute(`
         last_name VARCHAR(45) NULL,
         email VARCHAR(45) NOT NULL,
         PRIMARY KEY (user_id))
-    COMMENT = 'table for both admins and customers;
+    COMMENT = 'table for both admins and customers.';
 `);
 
+const insert_users = `
+    INSERT INTO user 
+        (first_name, last_name, email)
+    VALUES 
+        (?, ?, ?);
+`
+db.execute(insert_users, ['Kimberley', 'Ni', 'kimni25@bergen.org']);
+db.execute(insert_users, ['Vrielle', 'Guevarra', 'vrigue25@bergen.org']);
+db.execute(insert_users, ['Kristina', 'Nguyen', 'kringu25@bergen.org']);
+
+db.execute("SELECT * FROM user",
+    (error, results) => {
+        if (error)
+        throw error;
+
+        console.log("Table 'user' initialized with:")
+        console.log(results);
+    }
+);
+
+// ITEM
 db.execute(`
-    CREATE TABLE countries (
+    CREATE TABLE item (
+        item_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(150) NULL,
+        ingredients VARCHAR(150) NULL,
+        allergens VARCHAR(150) NULL,
+        description VARCHAR(450) NULL,
+        price DOUBLE NOT NULL,
+        price_dozen DOUBLE NULL,
+        PRIMARY KEY (item_id)
+    );
+`);
+
+const insert_items = `
+    INSERT INTO item 
+        (name, ingredients, allergens, description, price, price_dozen)
+    VALUES 
+        (?, ?, ?, ?, ?, ?);
+`
+db.execute(insert_items, ['Ube Macapuno Cookies', 'Ube (mashed), flour, sugar, butter, macapuno,',
+    'Milk, Wheat', 'Overall, a very yummy (and more importantly purple).', '4.75', '25']);
+db.execute(insert_items, ['Chocolate Chip Cookies', 'Flour, sugar, butter, dark chocolate, milk',
+    'Milk, Wheat', 'Your basic chocolate chip cookie.', '4.75', '25']);
+db.execute(insert_items, ['Matcha White Chocolate Chip Cookies', 'Matcha powder, white chocolate, wheat, flour,',
+    'Milk, Wheat', 'A great green cookie! Made with the finest ceremonial grade matcha powder.', '4.5', '25']);
+db.execute(insert_items, ['Oatmeal Strawberry Cookies', 'Oatmeal, strawberry, butter, wheat',
+    'Milk, Wheat', 'A comfort choice.', '4.5', '25']);
+
+db.execute("SELECT * FROM item",
+    (error, results) => {
+        if (error)
+        throw error;
+
+        console.log("Table 'item' initialized with:")
+        console.log(results);
+    }
+);
+
+// PICTURE
+db.execute(`
+    CREATE TABLE picture (
         picture_id INT NOT NULL AUTO_INCREMENT,
-        address VARCHAR(45) NULL,
-        alt VARCHAR(45) NULL,
+        address VARCHAR(150) NULL,
+        alt VARCHAR(150) NULL,
         PRIMARY KEY (picture_id)
     );
 `);
 
-// const insert_countries_table_sql = `
-//     INSERT INTO countries 
-//         (country_name)
-//     VALUES 
-//         (?);
-// `
-// db.execute(insert_countries_table_sql, ['England']);
+const insert_pics = `
+    INSERT INTO picture 
+        (address, alt)
+    VALUES 
+        (?, ?);
+`
+db.execute(insert_pics, ['../images/ube.png', 'ube']);
+db.execute(insert_pics, ['../images/chocolate_chip.png', 'chocolate chip']);
+db.execute(insert_pics, ['../images/matcha.png', 'matcha white chocolate chip cookies']);
+db.execute(insert_pics, ['../images/strawberry.png', 'oatmeal strawberry cookies']);
 
-// CREATE TABLE `project_kimni25_vrigue25_p8_2223t11`.`item` (
-//     `item_id` INT NOT NULL AUTO_INCREMENT,
-//     `ingredients` VARCHAR(45) NULL,
-//     `allergens` VARCHAR(45) NULL,
-//     `desc` VARCHAR(45) NULL,
-//     PRIMARY KEY (`item_id`));
+db.execute("SELECT * FROM picture",
+    (error, results) => {
+        if (error)
+        throw error;
 
-// CREATE TABLE `project_kimni25_vrigue25_p8_2223t11`.`picture` (
-//     `picture_id` INT NOT NULL AUTO_INCREMENT,
-//     `address` VARCHAR(45) NULL,
-//     `alt` VARCHAR(45) NULL,
-//     PRIMARY KEY (`picture_id`));
+        console.log("Table 'picture' initialized with:")
+        console.log(results);
+    }
+);
 
-// CREATE TABLE `project_kimni25_vrigue25_p8_2223t11`.`item_pic_xref` (
-//     `item_id` INT NOT NULL,
-//     `picture_id` INT NOT NULL,
-//     `slide_order` INT NULL,
-//     PRIMARY KEY (`item_id`, `picture_id`),
-//     INDEX `pic_id_idx` (`picture_id` ASC),
-//     CONSTRAINT `item_id`
-//       FOREIGN KEY (`item_id`)
-//       REFERENCES `project_kimni25_vrigue25_p8_2223t11`.`item` (`item_id`)
-//       ON DELETE RESTRICT
-//       ON UPDATE CASCADE,
-//     CONSTRAINT `picture_id`
-//       FOREIGN KEY (`picture_id`)
-//       REFERENCES `project_kimni25_vrigue25_p8_2223t11`.`picture` (`picture_id`)
-//       ON DELETE RESTRICT
-//       ON UPDATE CASCADE)
-//   COMMENT = 'A cross reference tables for Items and Pictures, with \'slide_order\' to determine the placement of the picture on the product details (or add to cart) page.';
+// ITEM PIC XREF
+db.execute(`
+    CREATE TABLE item_pic_xref (
+        item_id INT NOT NULL,
+        picture_id INT NOT NULL,
+        slide_order INT NULL,
+        PRIMARY KEY (item_id, picture_id),
+        INDEX pic_id_idx (picture_id ASC),
+        CONSTRAINT item_id
+        FOREIGN KEY (item_id)
+        REFERENCES item (item_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+        CONSTRAINT picture_id
+        FOREIGN KEY (picture_id)
+        REFERENCES picture (picture_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE)
+    COMMENT = 'A cross reference tables for Items and Pictures, with slide_order to determine the placement of the picture on the product details (or add to cart) page.';
+`);
 
-// CREATE TABLE `project_kimni25_vrigue25_p8_2223t11`.`order` (
-//     `order_id` INT NOT NULL,
-//     `item_id` INT NOT NULL,
-//     `user_id` INT NOT NULL,
-//     `quantity` INT NOT NULL,
-//     `date` DATETIME NOT NULL,
-//     PRIMARY KEY (`order_id`),
-//     INDEX `item_id_idx` (`item_id` ASC),
-//     INDEX `user_id_idx` (`user_id` ASC),
-//     CONSTRAINT `order_item_id`
-//       FOREIGN KEY (`item_id`)
-//       REFERENCES `project_kimni25_vrigue25_p8_2223t11`.`item` (`item_id`)
-//       ON DELETE RESTRICT
-//       ON UPDATE CASCADE,
-//     CONSTRAINT `order_user_id`
-//       FOREIGN KEY (`user_id`)
-//       REFERENCES `project_kimni25_vrigue25_p8_2223t11`.`user` (`user_id`)
-//       ON DELETE RESTRICT
-//       ON UPDATE CASCADE);
-  
+const item_pic_connect = `
+    INSERT INTO item_pic_xref 
+        (item_id, picture_id, slide_order)
+    VALUES 
+        (?, ?, ?);
+`
+db.execute(item_pic_connect, ['1', '1', '1']);
+db.execute(item_pic_connect, ['1', '2', '1']);
+db.execute(item_pic_connect, ['1', '3', '1']);
+db.execute(item_pic_connect, ['1', '4', '1']);
 
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item` (`name`, `ingredients`, `allergens`, `desc`, `price`, `price_dozen`) VALUES ('Ube Macapuno Cookies', 'Ube (mashed), flour, sugar, butter, macapuno, eggs, baking powder, baking soda, salt, ube extract', 'Milk, Wheat', 'Overall, a very yummy (and more importantly purple) cookie.', '4.75', '25.00');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item` (`name`, `ingredients`, `allergens`, `desc`, `price`, `price_dozen`) VALUES ('Chocolate Chip Cookies', 'Flour, sugar, butter, dark chocolate, milk', 'Milk, Wheat', 'Your basic chocolate chip cookie.', '4.75', '25.00');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item` (`name`, `ingredients`, `allergens`, `desc`, `price`, `price_dozen`) VALUES ('Matcha White Chocolate Chip Cookies', 'Matcha powder, white chocolate, wheat, flour, sugar, butter,', 'Milk, Wheat', 'A great green cookie! Made with the finest ceremonial matcha powde.', '4.50', '25.00');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item` (`name`, `ingredients`, `allergens`, `desc`, `price`, `price_dozen`) VALUES ('Oatmeal Strawberry Cookies', 'Oatmeal, strawberry, butter, wheat', 'Milk, Wheat', 'A comfort choice.', '4.50', '25.00');
+db.execute("SELECT * FROM item_pic_xref",
+    (error, results) => {
+        if (error)
+        throw error;
 
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`picture` (`address`, `alt`) VALUES ('..\\images\\ube.png', 'ube');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`picture` (`address`, `alt`) VALUES ('..\\images\\chocolate_chip.png', 'chocolate chip');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`picture` (`address`, `alt`) VALUES ('..\\images\\matcha.png', 'matcha white chocolate chip cookies');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`picture` (`address`, `alt`) VALUES ('..\\images\\strawberry.png', 'oatmeal strawberry cookies');
+        console.log("Table 'item_pic_xref' initialized with:")
+        console.log(results);
+    }
+);
 
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`user` (`first_name`, `last_name`, `email`) VALUES ('Kimberley', 'Ni', 'kimni25@bergen.org');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`user` (`first_name`, `last_name`, `email`) VALUES ('Vrielle', 'Guevarra', 'vrigue25@bergen.org');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`user` (`first_name`, `last_name`, `email`) VALUES ('Kristina', 'Nguyen', 'kringu25@bergen.org');
+// ORDER
+db.execute(`
+    CREATE TABLE orders (
+        order_id INT NOT NULL AUTO_INCREMENT,
+        user_id INT NULL,
+        date DATETIME NULL,
+        PRIMARY KEY (order_id),
+        INDEX order_user_idx (user_id ASC),
+        CONSTRAINT order_user
+        FOREIGN KEY (user_id)
+        REFERENCES user (user_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+    );
+`);
 
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item_pic_xref` (`item_id`, `picture_id`, `slide_order`) VALUES ('1', '1', '1');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item_pic_xref` (`item_id`, `picture_id`, `slide_order`) VALUES ('2', '2', '1');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item_pic_xref` (`item_id`, `picture_id`, `slide_order`) VALUES ('3', '3', '1');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`item_pic_xref` (`item_id`, `picture_id`, `slide_order`) VALUES ('4', '4', '1');
+const insert_orders = `
+    INSERT INTO orders
+        (user_id, date)
+    VALUES 
+        (?, ?);
+`
+db.execute(insert_orders, ['1', '2023-05-26 12:01:00']);
+db.execute(insert_orders, ['2', '2023-05-26 12:01:00']);
+db.execute(insert_orders, ['2', '2023-05-26 13:58:30']);
+db.execute(insert_orders, ['3', '2023-05-25 18:43:57']);
 
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`order` (`item_id`, `user_id`, `quantity`, `date`) VALUES ('1', '1', '3', '2023-05-26 12:01:00');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`order` (`item_id`, `user_id`, `quantity`, `date`) VALUES ('3', '1', '2', '2023-05-26 12:01:00');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`order` (`item_id`, `user_id`, `quantity`, `date`) VALUES ('2', '3', '1', '2023-05-26 13:58:30');
-// INSERT INTO `project_kimni25_vrigue25_p8_2223t11`.`order` (`item_id`, `user_id`, `quantity`, `date`) VALUES ('2', '3', '12', '2023-05-25-18:43:57');
+db.execute("SELECT * FROM orders",
+    (error, results) => {
+        if (error)
+        throw error;
 
-// CREATE TABLE `project_kimni25_vrigue25_p8_2223t11`.`order_item_xref` (
-//     `item_id` INT NOT NULL,
-//     `order_id` INT NOT NULL,
-//     `quantity` INT NOT NULL,
-//     PRIMARY KEY (`item_id`, `order_id`),
-//     INDEX `order_order_idx` (`order_id` ASC),
-//     CONSTRAINT `order_item`
-//       FOREIGN KEY (`item_id`)
-//       REFERENCES `project_kimni25_vrigue25_p8_2223t11`.`item` (`item_id`)
-//       ON DELETE RESTRICT
-//       ON UPDATE CASCADE,
-//     CONSTRAINT `order_order`
-//       FOREIGN KEY (`order_id`)
-//       REFERENCES `project_kimni25_vrigue25_p8_2223t11`.`order` (`order_id`)
-//       ON DELETE RESTRICT
-//       ON UPDATE CASCADE);
-  
+        console.log("Table 'order' initialized with:")
+        console.log(results);
+    }
+);
+
+// ORDER ITEM XREF
+db.execute(`
+    CREATE TABLE order_item_xref (
+        item_id INT NOT NULL,
+        order_id INT NOT NULL,
+        quantity INT NOT NULL,
+        PRIMARY KEY (item_id, order_id),
+        INDEX order_order_idx (order_id ASC),
+        CONSTRAINT order_item
+        FOREIGN KEY (item_id)
+        REFERENCES item (item_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+        CONSTRAINT order_order
+        FOREIGN KEY (order_id)
+        REFERENCES orders (order_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+    );
+`);
+
+const order_item_connect = `
+    INSERT INTO order_item_xref 
+        (item_id, order_id, quantity)
+    VALUES 
+        (?, ?, ?);
+`
+db.execute(order_item_connect, ['1', '1', '1']);
+db.execute(order_item_connect, ['1', '3', '24']);
+db.execute(order_item_connect, ['2', '1', '1']);
+db.execute(order_item_connect, ['3', '1', '12']);
+db.execute(order_item_connect, ['4', '2', '2']);
+db.execute(order_item_connect, ['4', '4', '12']);
+
+db.execute("SELECT * FROM order_item_xref",
+    (error, results) => {
+        if (error)
+        throw error;
+
+        console.log("Table 'order_item_xref' initialized with:")
+        console.log(results);
+    }
+);
+
+db.end();
