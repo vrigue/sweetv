@@ -8,6 +8,7 @@ const port = 3000;
 
 app.use(logger("dev"));
 app.use(express.static(__dirname + '/public'));
+app.use(express.urlencoded({ extended: false }));
 
 app.get( "/", ( req, res ) => {
     res.sendFile( __dirname + "/views/index.html" );
