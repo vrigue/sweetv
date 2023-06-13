@@ -1,3 +1,6 @@
+const DEBUG = true;
+
+const db = require('./db/db_connection');
 const express = require( "express" );
 const logger = require("morgan");
 const app = express();
