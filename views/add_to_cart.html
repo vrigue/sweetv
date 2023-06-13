@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SweetV - About</title>
+    <title>SweetV - Details</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +13,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
     <link rel="stylesheet" href="../stylesheets/navbar.css">
-    <link rel="stylesheet" href="../stylesheets/footer.css">
-    <link rel="stylesheet" href="../stylesheets/about.css">
+    <link rel="stylesheet" href="../stylesheets/item_detail.css">
+    <link rel="stylesheet" href="../stylesheets/add_to_cart.css">
 </head>
+
 <body>
     <!-- eventually menu bar partial -->
     <div class = "row secondary-back-color">
@@ -38,40 +40,39 @@
         </div>
     </header>
 
-    <div>
-        <div class = "main_img"></div>
-        <div class = "main_bg"></div>
-        <h1 class = "bg_text title">About SweetV</h1>
-        <h1 class = "main_text title">About SweetV</h1>
+    <div class="row secondary-back-color">
+        <h1 class="center"><small class="regular">Ube Macapuno Cookies</small></h1>
     </div>
 
-    <div class = "row">
-        <div class = "col-sm-6">
-            <p class = "regular">Vrielle Guevarra, founder of SweetV, had always loved to bake. 
-                Ever since she can remember, she helped her mom and grandma in the kitchen making all kinds of Filipino desserts from leche flan to layered ube cake.
-                Her mom used to always say that one she'll own a bakery called "SweetV". Now, after years of perfecting her cookie recipe and learning computer science, 
-                mere talk and dreams of SweetV have become a reality.
-            </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card fluid">
+                    <img src="..\images\ube.png" alt="ube macapuno cookies">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <form>
+                    <fieldset>
+                      <legend class = "regular">Item Information:</legend>
+                      <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                          <label for="item" class = "regular">Name:</label>
+                          <input type="text" id="item" placeholder="Ube Macapuno Cookies" class = "regular"/>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                          <label for="quantity" class = "regular">Quantity:</label>
+                          <input type="number" id="quantity" placeholder="12" class = "regular"/>
+                        </div>
+                    </fieldset>
+                  </form>
+                <div class="center">
+                    <a href=""><button class="btn regular">Add to Cart</button></a>
+                    <a href="order.html"><button class="btn regular">Back to Showcase</button></a>
+                </div>
         </div>
-        <div class = "col-sm-6">
-            <img src = "../images/test_cookies.jpeg">
         </div>
     </div>
-    
-    <!-- eventually footer partial -->
-    <footer>
-        <div class = "row">
-            <div class = "col-sm-6">
-                <h5 class = "regular">© 2023 SweetV</h5>
-            </div>
-            <div class = "col-sm-6">
-                <div class = "footer_right_align">
-                    <a href="menu.html" class="regular">Menu</a>
-                    <a href="about.html" class="regular">About</a>
-                    <a href="order.html" class="regular">Order</a> 
-                </div>   
-            </div>
-        </div>  
-    </footer>
+
 </body>
 </html>

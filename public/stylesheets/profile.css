@@ -1,0 +1,30 @@
+:root {
+    --button-back-color: #dec6ea;
+    --button-fore-color: #543563;
+    --collapse-label-back-color: #fffbfb;
+    --collapse-label-hover-back-color: #f5e8fc;
+    --collapse-selected-label-back-color: #ebd9f3;
+    --collapse-selected-label-border-color: #543563;
+    --collapse-content-back-color: #ebd9f3;
+}
+
+img {
+    width: 500px;
+    height: auto;
+    margin-top: 25px;
+}
+
+.collapse {
+    margin-top: 25px;
+}
+
+footer {
+    margin-top: 200px;
+}
+
+.btn:hover {
+    background-color: #7c618f;
+    color: #ebe0f1;
+    border-color: #220430;
+    color: #543563;
+}

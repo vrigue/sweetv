@@ -7,21 +7,21 @@
     --footer-link-color: white;
 }
 
-.center_special {
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, -0%);
+.main_img {
+    background-image: url("../images/ube-slideshow.jpeg");
+    height: 470px;
+    width: auto;
 }
 
 .main_bg {
     position: absolute;
-    top: 40.8%;
-    left: 50%;
+    top: 47%;
+    left: 49%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     background-color: #dec6ea;
     height: 45px;
-    width: 325px;
+    width: 600px;
     padding: 12px 24px;
     cursor: pointer;
     border-radius: 5px;
@@ -29,8 +29,8 @@
 
 .bg_text {
     position: absolute;
-    top: 40%;
-    left: 49.6%;
+    top: 46%;
+    left: 47.2%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     font-size: 100px;
@@ -42,8 +42,8 @@
 
 .main_text {
     position: absolute;
-    top: 40%;
-    left: 50%;
+    top: 46%;
+    left: 47.5%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     font-size: 100px;
@@ -53,48 +53,47 @@
     border-radius: 5px;
 }
 
-.main_btn {
+img {
+    display: block;
     position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    font-size: 14px;
-    padding: 12px 24px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-
-.card {
-    width: 90%;
-    border: 1px solid #ccc;
-    border-radius: 1px;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-    margin: 5px;
-    padding: 10px;
-    text-align: left;
-}
-
-.card img {
-    width: 100%;
+    right: 0;
+    padding: 30px;
+    padding-top: 75px;
+    padding-right: 70px;
+    width: 600px;
     height: auto;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    filter: drop-shadow(7px 7px #dec6ea);
+    filter: drop-shadow(15px 15px #dec6ea);
 }
 
-.card p {
-    font-size: 14px;
-}
-
-.btn:hover {
-    background-color: #7c618f;
-    color: #ebe0f1;
-    border-color: #220430;
+h1 {
+    font-size: 65px;
     color: #543563;
+    padding-top: 125px;
+    padding-left: 50px;
 }
 
-#page-title {
-    text-align: center;
+h2 {
+    background-color: #dec6ea;
+    font-size: 40px;
+    color: #543563;
+    margin-top: 175px;
+    margin-left: 50px;
+    margin-bottom: 25px;
+    padding-left: 3px;
+}
+
+h4 {
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+p {
+    font-size: 28px;
+    color: #392444;
+    padding-top: 125px;
+    padding-left:70px;
+}
+
+footer {
+    margin-top: 100px;
 }

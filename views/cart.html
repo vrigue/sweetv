@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SweetV - About</title>
+    <title>SweetV</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
     <link rel="stylesheet" href="../stylesheets/navbar.css">
     <link rel="stylesheet" href="../stylesheets/footer.css">
-    <link rel="stylesheet" href="../stylesheets/about.css">
+    <link rel="stylesheet" href="../stylesheets/cart.css">
 </head>
 <body>
     <!-- eventually menu bar partial -->
@@ -38,28 +38,52 @@
         </div>
     </header>
 
-    <div>
-        <div class = "main_img"></div>
-        <div class = "main_bg"></div>
-        <h1 class = "bg_text title">About SweetV</h1>
-        <h1 class = "main_text title">About SweetV</h1>
+    <div class = "row">
+        <div class = "col-sm-9">
+            <table class = "hoverable">
+                <caption class = "regular">Order:</caption>
+                <thead>
+                    <tr>
+                      <th class = "regular">Item:</th>
+                      <th class = "regular">Quantity:</th>
+                      <th class = "regular">Total:</th>
+                      <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class = "regular">Chocolate Chip Cookies</td>
+                        <td class = "regular">36</td>
+                        <td class = "regular">$75.00</td>
+                        <td><button class = "large main_btn regular" href="">DELETE</button></td>
+                    </tr>
+                    <tr>
+                        <td class = "regular">Matcha White Chocolate Chip Cookies</td>
+                        <td class = "regular">5</td>
+                        <td class = "regular">$20.00</td>
+                        <td><button class = "large main_btn regular" href="">DELETE</button></td>
+                    </tr>
+                    <tr>
+                        <td class = "regular">Oatmeal Strawberry Cookies</td>
+                        <td class = "regular">24</td>
+                        <td class = "regular">$50.00</td>
+                        <td><button class = "large main_btn regular" href="">DELETE</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class = "col-sm-3">
+            <p class = "regular">Subtotal: $145.00</p>
+            <p class = "regular">Labor Fee: $10.00</p>
+            <p class = "regular">Total: $155.00</p>
+            <button class = "btn regular" href="order.html">PLACE ORDER NOW</button>
+        </div>
     </div>
 
-    <div class = "row">
-        <div class = "col-sm-6">
-            <p class = "regular">Vrielle Guevarra, founder of SweetV, had always loved to bake. 
-                Ever since she can remember, she helped her mom and grandma in the kitchen making all kinds of Filipino desserts from leche flan to layered ube cake.
-                Her mom used to always say that one she'll own a bakery called "SweetV". Now, after years of perfecting her cookie recipe and learning computer science, 
-                mere talk and dreams of SweetV have become a reality.
-            </p>
-        </div>
-        <div class = "col-sm-6">
-            <img src = "../images/test_cookies.jpeg">
-        </div>
-    </div>
     
+
     <!-- eventually footer partial -->
-    <footer>
+    <footer class = "sticky">
         <div class = "row">
             <div class = "col-sm-6">
                 <h5 class = "regular">© 2023 SweetV</h5>
