@@ -21,21 +21,7 @@
         <h4 class = "center"><small class= "regular">made to order, handcrafted flavors</small></h4>
     </div>
     <header>
-        <div class = "row">
-            <div class = "col-sm-1">
-                <a src = "" class="logo title">SweetV</a>
-            </div>
-            <div class = "col-sm-11">
-                <div class = "right_align">
-                    <a href="index.html" class="button regular">Home</a>
-                    <a href="menu.html" class="button regular">Menu</a>
-                    <a href="about.html" class="button regular">About</a>
-                    <a href="order.html" class="button regular">Order</a>
-                    <a href = "cart.html" class = "button"><span class="icon-cart"></span></a>
-                    <a href = "profile.html" class = "button"><span class="icon-user"></span></span></a>
-                </div>
-            </div>
-        </div>
+        <%- include('partials/navbar.ejs') %>
     </header>
 
     <div class = "row">
@@ -82,20 +68,8 @@
 
     
 
-    <!-- eventually footer partial -->
     <footer class = "sticky">
-        <div class = "row">
-            <div class = "col-sm-6">
-                <h5 class = "regular">© 2023 SweetV</h5>
-            </div>
-            <div class = "col-sm-6">
-                <div class = "footer_right_align">
-                    <a href="menu.html" class="regular">Menu</a>
-                    <a href="about.html" class="regular">About</a>
-                    <a href="order.html" class="regular">Order</a> 
-                </div>   
-            </div>
-        </div>  
+        <%- include('partials/footer.ejs') %>
     </footer>
 </body>
 </html>
