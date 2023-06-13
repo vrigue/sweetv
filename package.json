@@ -1,6 +1,25 @@
 {
   "dependencies": {
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
     "foundation-sites": "^6.7.5",
-    "mini.css": "^3.0.1"
-  }
+    "mini.css": "^3.0.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.3.5",
+    "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "name": "sweetv",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "devstart": "nodemon -e js,ejs,sql,env app.js",
+    "initdb": "node db/db_init.js"
+  },
+  "author": "Vrielle Guevarra, Kimberley Ni",
+  "license": "ISC",
+  "description": ""
 }
