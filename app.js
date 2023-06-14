@@ -16,7 +16,13 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", 'cdnjs.cloudflare.com']
+            scriptSrc: ["'self'", 'cdnjs.cloudflare.com', 'https://code.jquery.com/jquery-2.1.4.min.js', 
+            "https://code.jquery.com/jquery-3.5.1.min.js", "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js",
+            "slick/slick.min.js", "/carousel.js"],
+            styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
+                'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap'],
+            fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com',
+                'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap']
         }
     }
 }));
@@ -46,23 +52,25 @@ app.get("/", (req, res) => {
 });
 
 app.get('/profile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
+    res.render('profile');
+    // res.send(JSON.stringify(req.oidc.user));
 });
 
 app.get("/order", (req, res) => {
-    res.render(__dirname + "/views/order.ejs");
+    res.render('order');
 });
 
 app.get("/about", (req, res) => {
-    res.render(__dirname + "/views/order.ejs");
+    res.render('about');
+    // res.render(__dirname + "/views/order.ejs");
 });
 
 app.get("/menu", (req, res) => {
-    res.render(__dirname + "/views/menu.ejs");
+    res.render('menu');
 });
 
-app.get("/menu/item_detail", (req, res) => {
-    res.render(__dirname + "/views/item_detail.ejs");
+app.get("/order/item_detail", (req, res) => {
+    res.render('item_detail');
 });
 
 app.listen(port, () => {
