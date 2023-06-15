@@ -45,7 +45,7 @@ db.execute("SELECT * FROM user",
 db.execute(`
     CREATE TABLE item (
         item_id INT NOT NULL AUTO_INCREMENT,
-        name VARCHAR(150) NULL,
+        item_name VARCHAR(150) NULL,
         ingredients VARCHAR(150) NULL,
         allergens VARCHAR(150) NULL,
         description VARCHAR(450) NULL,
@@ -57,18 +57,18 @@ db.execute(`
 
 const insert_items = `
     INSERT INTO item 
-        (name, ingredients, allergens, description, price, price_dozen)
+        (item_name, ingredients, allergens, description, price, price_dozen)
     VALUES 
         (?, ?, ?, ?, ?, ?);
 `
 db.execute(insert_items, ['Ube Macapuno Cookies', 'Ube (mashed), flour, sugar, butter, macapuno,',
     'Milk, Wheat', 'Overall, a very yummy (and more importantly purple).', '4.75', '25']);
 db.execute(insert_items, ['Chocolate Chip Cookies', 'Flour, sugar, butter, dark chocolate, milk',
-    'Milk, Wheat', 'Your basic chocolate chip cookie.', '4.75', '25']);
+    'Milk, Wheat', 'Your basic chocolate chip cookie.', '4.50', '25']);
 db.execute(insert_items, ['Matcha White Chocolate Chip Cookies', 'Matcha powder, white chocolate, wheat, flour,',
-    'Milk, Wheat', 'A great green cookie! Made with the finest ceremonial grade matcha powder.', '4.5', '25']);
+    'Milk, Wheat', 'A great green cookie! Made with the finest ceremonial grade matcha powder.', '4.75', '25']);
 db.execute(insert_items, ['Oatmeal Strawberry Cookies', 'Oatmeal, strawberry, butter, wheat',
-    'Milk, Wheat', 'A comfort choice.', '4.5', '25']);
+    'Milk, Wheat', 'A comfort choice.', '4.75', '25']);
 
 db.execute("SELECT * FROM item",
     (error, results) => {
@@ -139,9 +139,9 @@ const item_pic_connect = `
         (?, ?, ?);
 `
 db.execute(item_pic_connect, ['1', '1', '1']);
-db.execute(item_pic_connect, ['1', '2', '1']);
-db.execute(item_pic_connect, ['1', '3', '1']);
-db.execute(item_pic_connect, ['1', '4', '1']);
+db.execute(item_pic_connect, ['2', '2', '1']);
+db.execute(item_pic_connect, ['3', '3', '1']);
+db.execute(item_pic_connect, ['4', '4', '1']);
 
 db.execute("SELECT * FROM item_pic_xref",
     (error, results) => {
