@@ -51,13 +51,8 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 
-app.get('/profile', requiresAuth(), (req, res) => {
-    res.render('profile');
-    // res.send(JSON.stringify(req.oidc.user));
-});
-
-app.get("/order", (req, res) => {
-    res.render('order');
+app.get("/menu", (req, res) => {
+    res.render('menu');
 });
 
 app.get("/about", (req, res) => {
@@ -65,12 +60,23 @@ app.get("/about", (req, res) => {
     // res.render(__dirname + "/views/order.ejs");
 });
 
-app.get("/menu", (req, res) => {
-    res.render('menu');
+app.get("/order", (req, res) => {
+    res.render('order');
 });
+
 
 app.get("/order/item_detail", (req, res) => {
     res.render('item_detail');
+});
+
+app.get('/cart', requiresAuth(), (req, res) => {
+    res.render('cart');
+    // res.send(JSON.stringify(req.oidc.user));
+});
+
+app.get('/profile', requiresAuth(), (req, res) => {
+    res.render('profile');
+    // res.send(JSON.stringify(req.oidc.user));
 });
 
 app.listen(port, () => {
