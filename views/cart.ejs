@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SweetV</title>
+    <title>SweetV - Cart</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
@@ -46,19 +46,28 @@
                         <td class = "regular">Chocolate Chip Cookies</td>
                         <td class = "regular">36</td>
                         <td class = "regular">$75.00</td>
-                        <td><button class = "large main_btn regular" href="">DELETE</button></td>
+                        <td>
+                            <button class = "large main_btn regular" href="">Edit</button>
+                            <button class = "large main_btn regular" href="">DELETE</button>
+                        </td>
                     </tr>
                     <tr>
                         <td class = "regular">Matcha White Chocolate Chip Cookies</td>
                         <td class = "regular">5</td>
                         <td class = "regular">$20.00</td>
-                        <td><button class = "large main_btn regular" href="">DELETE</button></td>
+                        <td>
+                            <button class = "large main_btn regular" href="">Edit</button>
+                            <button class = "large main_btn regular" href="">DELETE</button>
+                        </td>
                     </tr>
                     <tr>
                         <td class = "regular">Oatmeal Strawberry Cookies</td>
                         <td class = "regular">24</td>
                         <td class = "regular">$50.00</td>
-                        <td><button class = "large main_btn regular" href="">DELETE</button></td>
+                        <td>
+                            <button class = "large main_btn regular" href="">Edit</button>
+                            <button class = "large main_btn regular" href="">DELETE</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -67,7 +76,28 @@
             <p class = "regular">Subtotal: $145.00</p>
             <p class = "regular">Labor Fee: $10.00</p>
             <p class = "regular">Total: $155.00</p>
-            <button class = "btn regular" href="order.html">PLACE ORDER NOW</button>
+
+            <button class = "btn regular" href="">
+                <label for="modal-control" class = "regular">PLACE ORDER NOW</label>
+            </button>
+            <input type="checkbox" id="modal-control" class="modal">
+            <div>
+              <div class="card">
+                <label for="modal-control" class="modal-close"></label>
+                <h3 class="section regular">Order Placed!</h3>
+                <p class="section regular">Please check your email for your pickup date and time.
+                </p>
+                <p class="section regular">Please have $155.00 in cash ready at pickup,
+                    or venmo @vrielle <b class = "regular">PRIOR TO</b> your pickup.
+                </p>
+                <p class="section regular bold">If we do not receive your payment, we will NOT
+                    give you your order.
+                </p>
+                <p class="section regular bold">If you do not show up for your pickup, we will
+                    no longer take orders from you.
+                </p>
+              </div>
+            </div>
         </div>
     </div>
 

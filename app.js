@@ -7,6 +7,7 @@ const app = express();
 const port = 3000;
 const dotenv = require('dotenv');
 dotenv.config();
+const fs = require("fs");
 const path = require("path");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -51,31 +52,70 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 
-app.get("/menu", (req, res) => {
-    res.render('menu');
-});
-
 app.get("/about", (req, res) => {
     res.render('about');
-    // res.render(__dirname + "/views/order.ejs");
 });
 
-app.get("/order", (req, res) => {
-    res.render('order');
+const read_item_all_sql = fs.readFileSync(path.join(__dirname, 
+                                                "db", "queries", "crud", "read_item_all.sql"),
+                                                {encoding : "UTF-8"});
+
+/* define a route for the menu page */
+app.get( "/menu", ( req, res ) => {
+    db.execute(read_item_all_sql, (error, results) => {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            res.render("menu", {item : results});
+        }
+    });
 });
 
-
-app.get("/order/item_detail", (req, res) => {
-    res.render('item_detail');
+/* define a route for the order page */
+app.get("/order", requiresAuth(), (req, res) => {
+    db.execute(read_item_all_sql, (error, results) => {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            res.render("order", {item : results});
+        }
+    });
 });
+
+const read_item_sql = fs.readFileSync(path.join(__dirname, 
+                                                "db", "queries", "crud", "read_item.sql"),
+                                                {encoding : "UTF-8"});
+
+app.get("/order/item_detail/:id", requiresAuth(), (req, res) => {
+    db.execute(read_item_sql, [req.params.id], (error, results) => {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            res.render("item_detail", {item : results});
+        }
+    });
+});
+
+app.get("/add_to_cart", (req, res) => {
+    res.render('add_to_cart');
+});
+
+const read_order_all_sql = fs.readFileSync(path.join(__dirname, 
+                                                "db", "queries", "crud", "read_order_all.sql"),
+                                                {encoding : "UTF-8"});
 
 app.get('/cart', requiresAuth(), (req, res) => {
-    res.render('cart');
-    // res.send(JSON.stringify(req.oidc.user));
+    db.execute(read_order_all_sql, [req.oidc.user.sub], (error, results) => {
+        if (error) {
+            res.status(500).send(error); 
+        } else {
+            res.render("cart", {order : results});
+        }
+    });
 });
 
 app.get('/profile', requiresAuth(), (req, res) => {
-    res.render('profile');
+    res.render('profile', {user : req.oidc.user});
     // res.send(JSON.stringify(req.oidc.user));
 });
 
