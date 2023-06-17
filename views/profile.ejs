@@ -36,24 +36,24 @@
             <div class = "col-sm-6">
                 <div class = "row">
                     <div class = "col-sm-6">
-                        <img src = "../images/default_avatar.jpeg">
+                        <img style="max-width: 330px" width="330" src = <%=user.picture%>>
                     </div>
                     <div class = "col-sm-6">
                         <div class = "collapse">
                             <input type="checkbox" id="collapse-section1" checked aria-hidden="true">
                             <label for="collapse-section1" aria-hidden="true" class = "regular">Name:</label>
                             <div>
-                                <p class = "regular">Matthew Wang</p>
+                                <p class = "regular"><%=user.name%></p>
                             </div>    
                         </div>
                         <div class = "collapse">
                             <input type="checkbox" id="collapse-section2" checked aria-hidden="true">
                             <label for="collapse-section2" aria-hidden="true" class = "regular">Email:</label>
                             <div>
-                                <p class = "regular">matwan@bergen.org</p>
+                                <p class = "regular"><%=user.email%></p>
                             </div>    
                         </div>
-                        <button class = "btn regular" href="">Logout</button>
+                        <a href="/logout"><button class = "btn regular">Logout</button></a>
                     </div>
                 </div>
             </div>
