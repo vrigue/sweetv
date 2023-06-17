@@ -42,17 +42,17 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <form>
+                <form method = "post" action = "/add_to_cart">
                     <fieldset>
                       <legend class = "regular">Item Information:</legend>
                       <div class="row">
                         <div class="col-sm-12 col-md-6">
-                          <label for="item" class = "regular">Name:</label>
-                          <input type="text" id="item" placeholder="Ube Macapuno Cookies" class = "regular"/>
+                          <label for="quantity" class = "regular">Quantity:</label>
+                          <input type="number" name="quantity" placeholder="12" class = "regular"/>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                          <label for="quantity" class = "regular">Quantity:</label>
-                          <input type="number" id="quantity" placeholder="12" class = "regular"/>
+                            <label for="item" class = "regular">Notes:</label>
+                            <input type="text" name="notes" placeholder="Add extra chocolate chips" class = "regular"/>
                         </div>
                     </fieldset>
                   </form>

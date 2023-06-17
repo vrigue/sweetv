@@ -157,7 +157,7 @@ db.execute("SELECT * FROM item_pic_xref",
 db.execute(`
     CREATE TABLE orders (
         order_id INT NOT NULL AUTO_INCREMENT,
-        user_id VARCHAR(50) NULL,
+        user_id VARCHAR(50) NOT NULL,
         date DATETIME NULL,
         PRIMARY KEY (order_id)
     );
@@ -194,6 +194,7 @@ db.execute(`
         item_id INT NOT NULL,
         order_id INT NOT NULL,
         quantity INT NOT NULL,
+        notes VARCHAR(500) NULL,
         PRIMARY KEY (item_id, order_id),
         INDEX order_order_idx (order_id ASC),
         CONSTRAINT order_item
@@ -211,9 +212,9 @@ db.execute(`
 
 const order_item_connect = `
     INSERT INTO order_item_xref 
-        (item_id, order_id, quantity)
+        (item_id, order_id, quantity, notes)
     VALUES 
-        (?, ?, ?);
+        (?, ?, ?, ?);
 `
 // // placed (has date) order #1 for kimby
 // db.execute(order_item_connect, ['1', '1', '1']);
@@ -223,14 +224,14 @@ const order_item_connect = `
 // db.execute(order_item_connect, ['3', '5', '12']);
 
 // placed (has date) order #1 for vri
-db.execute(order_item_connect, ['1', '1', '24']);
-db.execute(order_item_connect, ['4', '1', '2']);
+db.execute(order_item_connect, ['1', '1', '24', null]);
+db.execute(order_item_connect, ['4', '1', '2', null]);
 
 // unplaced (no date) order #2 for vri 
-db.execute(order_item_connect, ['1', '2', '36']);
-db.execute(order_item_connect, ['2', '2', '24']);
-db.execute(order_item_connect, ['3', '2', '5']);
-db.execute(order_item_connect, ['4', '2', '12']);
+// db.execute(order_item_connect, ['1', '2', '36']);
+db.execute(order_item_connect, ['2', '2', '24', 'Add extra chocolate chips.']);
+db.execute(order_item_connect, ['3', '2', '5', null]);
+db.execute(order_item_connect, ['4', '2', '12', null]);
 
 db.execute("SELECT * FROM order_item_xref",
     (error, results) => {

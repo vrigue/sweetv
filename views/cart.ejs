@@ -30,7 +30,7 @@
     </header>
 
     <div class = "row">
-        <div class = "col-sm-9">
+        <div class = "col-sm-10">
             <table class = "hoverable">
                 <caption class = "regular">Order:</caption>
                 <thead>
@@ -38,6 +38,7 @@
                       <th class = "regular">Item:</th>
                       <th class = "regular">Quantity:</th>
                       <th class = "regular">Total:</th>
+                      <th class = "regular">Notes:</th>
                       <th></th>
                     </tr>
                 </thead>
@@ -46,38 +47,41 @@
                         <td class = "regular">Chocolate Chip Cookies</td>
                         <td class = "regular">36</td>
                         <td class = "regular">$75.00</td>
+                        <td class = "regular">Add extra chocolate chips.</td>
                         <td>
-                            <button class = "large main_btn regular" href="">Edit</button>
-                            <button class = "large main_btn regular" href="">DELETE</button>
+                            <button class = "main_btn regular" href="/cart/edit">Edit</button>
+                            <button class = "main_btn regular" href="/cart/delete">DELETE</button>
                         </td>
                     </tr>
                     <tr>
                         <td class = "regular">Matcha White Chocolate Chip Cookies</td>
                         <td class = "regular">5</td>
                         <td class = "regular">$20.00</td>
+                        <td class = "regular"></td>
                         <td>
-                            <button class = "large main_btn regular" href="">Edit</button>
-                            <button class = "large main_btn regular" href="">DELETE</button>
+                            <button class = "main_btn regular" href="/cart/edit">Edit</button>
+                            <button class = "main_btn regular" href="/cart/delete">DELETE</button>
                         </td>
                     </tr>
                     <tr>
                         <td class = "regular">Oatmeal Strawberry Cookies</td>
                         <td class = "regular">24</td>
                         <td class = "regular">$50.00</td>
+                        <td class = "regular"></td>
                         <td>
-                            <button class = "large main_btn regular" href="">Edit</button>
-                            <button class = "large main_btn regular" href="">DELETE</button>
+                            <button class = "main_btn regular" href="/cart/edit">Edit</button>
+                            <button class = "main_btn regular" href="/cart/delete">DELETE</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class = "col-sm-3">
+        <div class = "col-sm-2">
             <p class = "regular">Subtotal: $145.00</p>
             <p class = "regular">Labor Fee: $10.00</p>
             <p class = "regular">Total: $155.00</p>
 
-            <button class = "btn regular" href="">
+            <button class = "btn regular" href="/cart">
                 <label for="modal-control" class = "regular">PLACE ORDER NOW</label>
             </button>
             <input type="checkbox" id="modal-control" class="modal">
