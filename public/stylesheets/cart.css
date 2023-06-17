@@ -5,6 +5,7 @@
     --table-body-back-color: #f8effd;
     --table-border-color: #543563;
     --table-body-hover-back-color: #e7ccf3;
+
 }
 
 table {
@@ -43,6 +44,23 @@ caption {
 
 footer {
     margin-top: 160px;
+}
+
+.card {
+    width: 1000px;
+    height: auto;
+}
+
+.card p {
+    font-size: 18px;
+}
+
+label {
+    font-size: 24px;
+}
+
+.bold {
+    font-weight: bolder;
 }
 
 /* .order {

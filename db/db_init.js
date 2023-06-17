@@ -6,40 +6,40 @@ db.execute("DROP TABLE IF EXISTS `order_item_xref`;");
 db.execute("DROP TABLE IF EXISTS `orders`;");
 db.execute("DROP TABLE IF EXISTS `item`;");
 db.execute("DROP TABLE IF EXISTS `picture`;");
-db.execute("DROP TABLE IF EXISTS `user`;");
+// db.execute("DROP TABLE IF EXISTS `user`;");
 
 /**** TABLES  ****/
 
 // USER
-db.execute(`
-    CREATE TABLE user (
-        user_id INT NOT NULL AUTO_INCREMENT,
-        first_name VARCHAR(45) NULL,
-        last_name VARCHAR(45) NULL,
-        email VARCHAR(45) NOT NULL,
-        PRIMARY KEY (user_id))
-    COMMENT = 'table for both admins and customers.';
-`);
+// db.execute(`
+//     CREATE TABLE user (
+//         user_id INT NOT NULL AUTO_INCREMENT,
+//         first_name VARCHAR(45) NULL,
+//         last_name VARCHAR(45) NULL,
+//         email VARCHAR(45) NOT NULL,
+//         PRIMARY KEY (user_id))
+//     COMMENT = 'table for both admins and customers.';
+// `);
 
-const insert_users = `
-    INSERT INTO user 
-        (first_name, last_name, email)
-    VALUES 
-        (?, ?, ?);
-`
-db.execute(insert_users, ['Kimberley', 'Ni', 'kimni25@bergen.org']);
-db.execute(insert_users, ['Vrielle', 'Guevarra', 'vrigue25@bergen.org']);
-db.execute(insert_users, ['Kristina', 'Nguyen', 'kringu25@bergen.org']);
+// const insert_users = `
+//     INSERT INTO user 
+//         (first_name, last_name, email)
+//     VALUES 
+//         (?, ?, ?);
+// `
+// db.execute(insert_users, ['Kimberley', 'Ni', 'kimni25@bergen.org']);
+// db.execute(insert_users, ['Vrielle', 'Guevarra', 'vrigue25@bergen.org']);
+// db.execute(insert_users, ['Kristina', 'Nguyen', 'kringu25@bergen.org']);
 
-db.execute("SELECT * FROM user",
-    (error, results) => {
-        if (error)
-        throw error;
+// db.execute("SELECT * FROM user",
+//     (error, results) => {
+//         if (error)
+//         throw error;
 
-        console.log("Table 'user' initialized with:")
-        console.log(results);
-    }
-);
+//         console.log("Table 'user' initialized with:")
+//         console.log(results);
+//     }
+// );
 
 // ITEM
 db.execute(`
@@ -138,10 +138,10 @@ const item_pic_connect = `
     VALUES 
         (?, ?, ?);
 `
-db.execute(item_pic_connect, ['1', '1', '1']);
-db.execute(item_pic_connect, ['2', '2', '1']);
+db.execute(item_pic_connect, ['1', '1', '3']);
+db.execute(item_pic_connect, ['2', '2', '2']);
 db.execute(item_pic_connect, ['3', '3', '1']);
-db.execute(item_pic_connect, ['4', '4', '1']);
+db.execute(item_pic_connect, ['4', '4', '4']);
 
 db.execute("SELECT * FROM item_pic_xref",
     (error, results) => {
@@ -157,15 +157,9 @@ db.execute("SELECT * FROM item_pic_xref",
 db.execute(`
     CREATE TABLE orders (
         order_id INT NOT NULL AUTO_INCREMENT,
-        user_id INT NULL,
+        user_id VARCHAR(50) NULL,
         date DATETIME NULL,
-        PRIMARY KEY (order_id),
-        INDEX order_user_idx (user_id ASC),
-        CONSTRAINT order_user
-        FOREIGN KEY (user_id)
-        REFERENCES user (user_id)
-        ON DELETE RESTRICT
-        ON UPDATE CASCADE
+        PRIMARY KEY (order_id)
     );
 `);
 
@@ -175,10 +169,14 @@ const insert_orders = `
     VALUES 
         (?, ?);
 `
-db.execute(insert_orders, ['1', '2023-05-26 12:01:00']);
-db.execute(insert_orders, ['2', '2023-05-26 12:01:00']);
-db.execute(insert_orders, ['2', '2023-05-26 13:58:30']);
-db.execute(insert_orders, ['3', '2023-05-25 18:43:57']);
+// db.execute(insert_orders, ['1', '2023-05-26 12:01:00']); 
+// db.execute(insert_orders, ['4', '2023-05-26 12:01:00']);
+// db.execute(insert_orders, ['4', '2023-05-26 13:58:30']);
+// db.execute(insert_orders, ['4', null]);
+// db.execute(insert_orders, ['3', '2023-05-25 18:43:57']);
+
+db.execute(insert_orders, ['google-oauth2|111073053384468725735', '2023-05-26 12:01:00']); 
+db.execute(insert_orders, ['google-oauth2|111073053384468725735', null]); 
 
 db.execute("SELECT * FROM orders",
     (error, results) => {
@@ -217,12 +215,22 @@ const order_item_connect = `
     VALUES 
         (?, ?, ?);
 `
-db.execute(order_item_connect, ['1', '1', '1']);
-db.execute(order_item_connect, ['1', '3', '24']);
-db.execute(order_item_connect, ['2', '1', '1']);
-db.execute(order_item_connect, ['3', '1', '12']);
-db.execute(order_item_connect, ['4', '2', '2']);
-db.execute(order_item_connect, ['4', '4', '12']);
+// // placed (has date) order #1 for kimby
+// db.execute(order_item_connect, ['1', '1', '1']);
+// db.execute(order_item_connect, ['2', '1', '1']);
+
+// // placed (has date) order #5 for pyro
+// db.execute(order_item_connect, ['3', '5', '12']);
+
+// placed (has date) order #1 for vri
+db.execute(order_item_connect, ['1', '1', '24']);
+db.execute(order_item_connect, ['4', '1', '2']);
+
+// unplaced (no date) order #2 for vri 
+db.execute(order_item_connect, ['1', '2', '36']);
+db.execute(order_item_connect, ['2', '2', '24']);
+db.execute(order_item_connect, ['3', '2', '5']);
+db.execute(order_item_connect, ['4', '2', '12']);
 
 db.execute("SELECT * FROM order_item_xref",
     (error, results) => {
