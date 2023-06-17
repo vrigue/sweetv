@@ -19,7 +19,7 @@ app.use(helmet({
             defaultSrc: ["'self'"],
             scriptSrc: ["'self'", 'cdnjs.cloudflare.com', 'https://code.jquery.com/jquery-2.1.4.min.js', 
             "https://code.jquery.com/jquery-3.5.1.min.js", "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js",
-            "slick/slick.min.js", "/carousel.js"],
+                "/carousel.js"],
             styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
                 'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap'],
             fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com',
