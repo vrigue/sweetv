@@ -22,7 +22,9 @@ app.use(helmet({
             "https://code.jquery.com/jquery-3.5.1.min.js", "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js",
                 "/carousel.js", "/slick/slick.min.js"],
             styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
-                'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap'],
+                'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap',
+                "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css",
+                "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"],
             fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com',
                 'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap']
         }
