@@ -17,14 +17,15 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            "img-src": ["'self'", "https://lh3.googleusercontent.com"],
+            "img-src": ["'self'", "https://lh3.googleusercontent.com", "http://www.w3.org/2000/svg", "image/svg+xml"],
             scriptSrc: ["'self'", 'cdnjs.cloudflare.com', 'https://code.jquery.com/jquery-2.1.4.min.js', 
             "https://code.jquery.com/jquery-3.5.1.min.js", "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js",
                 "/carousel.js", "/slick/slick.min.js"],
             styleSrc: ["'self'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
                 'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap',
                 "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css",
-                "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"],
+                "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css",
+                "https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css"],
             fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com',
                 'https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap']
         }
