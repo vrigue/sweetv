@@ -103,14 +103,26 @@ app.get("/order", (req, res) => {
 const read_item_full_sql = fs.readFileSync(path.join(__dirname, 
                                                 "db", "queries", "crud", "read_item_full.sql"),
                                                 {encoding : "UTF-8"});
-
+const read_item_pictures_sql = fs.readFileSync(path.join(__dirname, 
+                                                "db", "queries", "crud", "read_item_pictures.sql"),
+                                                {encoding : "UTF-8"});
 /* define a route for the item detail page */
 app.get("/item_detail/:id", (req, res) => {
     db.execute(read_item_full_sql, [req.params.id], (error, results) => {
         if (error) {
             res.status(500).send(error); 
-        } else {
-            res.render("item_detail", {item : results});
+        }
+        else if (results.length == 0)
+            res.status(404).send(`No item found with id = "${req.params.id}"`); 
+        else {
+            db.execute(read_item_pictures_sql, [req.params.id], (error2, results2) => {
+                if (error2)
+                    res.status(500).send(error2);
+                else {
+                    let data = {wand_info: results[0], crafters_list: results2};
+                    res.render("item_detail", {item : results[0], picture: results2});
+                }
+            });
         }
     });
 });

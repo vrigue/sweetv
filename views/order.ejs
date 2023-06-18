@@ -51,76 +51,27 @@
 
     <br>
 
-    <!-- example
-    <div class="card">
-        <img src="..\images\ube.jpeg" class="section media" />
-        <div class="section"></div>
-        <div class="section dark">
-    </div>
-    </div> -->
-
     <!-- 4x4 grid for products display -->
     <div class="row">
-        <div class="col-sm-3">
-            <div class="card">
-                <img src="..\images\ube.png" alt="ube macapuno cookies">
-                <div class="card-body">
-                    <div class="section">
-                        <p class="description regular">Ube Macapuno Cookies</p>
+        <% for (let i = 0; i < item.length; i++) { %>
+            <div class="col-sm-3">
+                <div class="card">
+                    <img src=<%= item[i].address %> alt=<%= item[i].alt %>>
+                    <div class="card-body">
+                        <div class="section">
+                            <p class="description regular"><%= item[i].item_name %></p>
+                        </div>
+                        <div class="section dark">
+                            <p class="price regular">
+                                <%= "$" + (Math.round(item[i].price * 100) / 100).toFixed(2).toString() + " (1)" %>
+                            </p>
+                        </div>
+                        <a href= <%= "/item_detail/" + item[i].item_id.toString()%>><button class="btn btn-primary regular">More Info</button></a>
+                        <a href= <%= "/add_to_cart" + item[i].item_id.toString()%>><button class="btn btn-primary regular">Add to Cart</button></a>
                     </div>
-                    <div class="section dark">
-                        <p class="price regular">$4.75 (1)</p>
-                    </div>
-                    <a href="/item_detail"><button class="btn btn-primary regular">More Info</button></a>
-                    <a href="/add_to_cart"><button class="btn btn-primary regular">Add to Cart</button></a>
                 </div>
             </div>
-        </div>
-        <!-- <div class="col-sm-3">
-            <div class="card">
-                <img src="..\images\chocolate_chip.png" alt="chocolate chip cookies">
-                <div class="card-body">
-                    <div class="section">
-                        <p class="description regular">Chocolate Chip Cookies</p>
-                    </div>
-                    <div class="section dark">
-                        <p class="price regular">$4.25 (1)</p>
-                    </div>
-                    <a href="/menu/item_detail"><button class="btn btn-primary regular">More Info</button></a>
-                    <a href="add_to_cart.html"><button class="btn btn-primary regular">Add to Cart</button></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <img src="..\images\matcha.png" alt="matcha white chocolate chip cookies">
-                <div class="card-body">
-                    <div class="section">
-                        <p class="description regular">Matcha White Chocolate Chip Cookies</p>
-                    </div>
-                    <div class="section dark">
-                        <p class="price regular">$4.50 (1)</p>
-                    </div>
-                    <a href="/menu/item_detail"><button class="btn btn-primary regular">More Info</button></a>
-                    <a href="add_to_cart.html"><button class="btn btn-primary regular">Add to Cart</button></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <img src="..\images\strawberry.png" alt="oatmeal strawberry cookies">
-                <div class="card-body">
-                    <div class="section">
-                        <p class="description regular">Oatmeal Strawberry Cookies</p>
-                    </div>
-                    <div class="section dark">
-                        <p class="price regular">$4.50 (1)</p>
-                    </div>
-                    <a href="item_detail.html"><button class="btn btn-primary regular">More Info</button></a>
-                    <a href="add_to_cart.html"><button class="btn btn-primary regular">Add to Cart</button></a>
-                </div>
-            </div>
-        </div> -->
+        <% } %>
     </div>
 
     <footer class = "sticky">
