@@ -37,6 +37,13 @@
     background-color: #664178;
 }
 
-/* .icon {
-    color-scheme: #543563;
-} */
+.icon, .i, .feather {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transform: translateY(25%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #664178;
+}
