@@ -119,7 +119,6 @@ app.get("/item_detail/:id", (req, res) => {
                 if (error2)
                     res.status(500).send(error2);
                 else {
-                    let data = {wand_info: results[0], crafters_list: results2};
                     res.render("item_detail", {item : results[0], picture: results2});
                 }
             });
@@ -137,7 +136,7 @@ app.get("/add_to_cart/:id", (req, res) => {
         if (error) {
             res.status(500).send(error); 
         } else {
-            res.render("add_to_cart", {item : results});
+            res.render("add_to_cart", {item : results[0]});
         }
     });
 });
