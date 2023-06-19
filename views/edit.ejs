@@ -23,52 +23,59 @@
 </head>
 
 <body>
-    <div class = "row secondary-back-color">
-        <h4 class = "center"><small class= "regular">made to order, handcrafted flavors</small></h4>
+    <div class="row secondary-back-color">
+        <h4 class="center"><small class="regular">made to order, handcrafted flavors</small></h4>
     </div>
     <header>
         <%- include('partials/navbar.ejs') %>
     </header>
 
     <div class="row secondary-back-color">
-        <h1 class="center"><small class="regular"><%= item.item_name %></small></h1>
+        <h1 class="center"><small class="regular">
+                <%= item.item_name %>
+            </small></h1>
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <div class="card fluid">
-                    <img src=<%= item.address %> alt=<%= item.alt %>>
+                    <img src=<%=item.address %> alt=<%= item.alt %>>
                 </div>
             </div>
             <div class="col-sm-6">
-                <form method = "post" action = <%= "/cart/edit/" + serial %>>
+                <form method="post" action=<%="/cart/edit/" + serial %>>
                     <fieldset>
-                      <legend class = "regular">Item Information:</legend>
-                      <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                          <label for="quantity" class = "regular">Quantity:</label>
-                          <input type="number" name="quantity" id="quantity" value=<%= item.quantity %> class = "regular"/>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label for="item" class = "regular">Notes:</label>
-                            <input type="text" name="notes" value="<%= item.notes %>" class = "regular"/>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label for="serial" class = "regular">Serial:</label>
-                            <input type="number" name = "serial" id="serial" class="regular readonly-input" readonly value=<%= serial %>>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label for="num" class = "regular">Order #:</label>
-                            <input type="number" name = "num" id="num" class="regular readonly-input" readonly value=<%= num %>>
-                        </div>
+                        <legend class="regular">Item Information:</legend>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="quantity" class="regular">Quantity:</label>
+                                <input type="number" name="quantity" id="quantity" value=<%=item.quantity %> class =
+                                "regular"/>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="item" class="regular">Notes:</label>
+                                <input type="text" name="notes" value="<%= item.notes %>" class="regular" />
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="serial" class="regular">Serial:</label>
+                                <input type="number" name="serial" id="serial" class="regular readonly-input" readonly
+                                    value=<%=serial %>>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="num" class="regular">Order #:</label>
+                                <input type="number" name="num" id="num" class="regular readonly-input" readonly
+                                    value=<%=num %>>
+                            </div>
                     </fieldset>
                     <div class="center">
-                        <a href=""><button class="btn regular" type = "submit">Save Changes</button></a>
-                        <a href="/cart"><button class="btn regular">Back to Cart</button></a>
+                        <a href=""><button class="btn regular" type="submit">Save Changes</button></a>
                     </div>
-                  </form>
-                
+                </form>
+                <div class="center">
+                    <a href=<%="/cart/delete/" + serial %>><button class="btn regular">Remove Order From Cart</button></a>
+                    <a href="/cart"><button class="btn regular">Back to Cart</button></a>
+                </div>
             </div>
         </div>
     </div>
@@ -77,4 +84,5 @@
     <%- include('partials/feather.ejs') %>
 
 </body>
+
 </html>

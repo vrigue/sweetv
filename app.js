@@ -252,11 +252,17 @@ const delete_order_item_sql = fs.readFileSync(path.join(__dirname,
                                                 {encoding : "UTF-8"});
 
 /* define a route for item DELETE utilizing async and await */
-app.post("/cart/delete/:id", async (req, res) => {
+app.get("/cart/delete/:id", async (req, res) => {
     try {
-        let [results, fields1] = await db.execute(read_order_id_null_sql, [req.oidc.user.sub]);
-        db.execute(delete_order_item_sql, [req.params.id, results[0]]);
-        res.redirect(`/cart`);
+        db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
+            console.log("about to be deleting")
+            console.log(results)
+            // console.log(req.body.notes)
+            // console.log(req.params.id)
+            // console.log(results[0].order_id)
+            db.execute(delete_order_item_sql, [req.params.id, results[0].order_id]);
+            res.redirect(`/cart`);
+        });        
     }
     catch (error) {
         res.status(500).send(error); 

@@ -63,10 +63,6 @@ label {
     font-weight: bolder;
 }
 
-.regular, .price {
-    font-size: 12px;
-}
-
 /* .order {
     max-width: 250px;
     max-height: 150px;
