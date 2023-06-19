@@ -1,6 +1,6 @@
 UPDATE order_item_xref 
 SET
-    quantity = ?
+    quantity = ?,
     notes = ?
 WHERE 
     item_id = ?

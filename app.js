@@ -159,34 +159,30 @@ const create_order_item_sql = fs.readFileSync(path.join(__dirname,
 app.post( "/add_to_cart", ( req, res ) => {
     try {
         db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
-            if (error)
-                res.status(500).send(error);
-            else {
-                if (results.length < 1) {
-                    db.execute(create_order_sql, [req.oidc.user.sub], (error2, results2) => {
-                        if (error2)
-                            res.status(500).send(error2);
-                        else {
-                            console.log(results2);
-                            db.execute(create_order_item_sql, [req.body.serial, results2.insertId, req.body.quantity, req.body.notes], (error3, results3) => {
-                                if (error3)
-                                    res.status(500).send(error3);
-                            });
-                        }
-                    });
-                }
-                else {
-                    // console.log(req.body.serial)
-                    // console.log(results[0].order_id)
-                    // console.log(req.body.quantity)
-                    // console.log(req.body.notes)
-                    db.execute(create_order_item_sql, [req.body.serial, results[0].order_id, req.body.quantity, req.body.notes], (error2, results2) => {
-                        if (error2)
-                            res.status(500).send(error2);
-                    });
-                }
-                res.redirect(`/cart`);
+            if (results.length < 1) {
+                db.execute(create_order_sql, [req.oidc.user.sub], (error2, results2) => {
+                    if (error2)
+                        res.status(500).send(error2);
+                    else {
+                        console.log(results2);
+                        db.execute(create_order_item_sql, [req.body.serial, results2.insertId, req.body.quantity, req.body.notes], (error3, results3) => {
+                            if (error3)
+                                res.status(500).send(error3);
+                        });
+                    }
+                });
             }
+            else {
+                // console.log(req.body.serial)
+                // console.log(results[0].order_id)
+                // console.log(req.body.quantity)
+                // console.log(req.body.notes)
+                db.execute(create_order_item_sql, [req.body.serial, results[0].order_id, req.body.quantity, req.body.notes], (error2, results2) => {
+                    if (error2)
+                        res.status(500).send(error2);
+                });
+            }
+            res.redirect(`/cart`);
         });        
     }
     catch (error) {
@@ -206,23 +202,24 @@ app.get('/cart', (req, res) => {
         } else {
             let cost = 0
             for (let i = 0; i < results.length; i++) {
-                cost += (results[i].quantity / 12) * results[i].price_dozen + (results[i].quantity % 12) * results[i].price
+                cost += ((results[i].quantity - (results[i].quantity % 12)) / 12) * results[i].price_dozen + (results[i].quantity % 12) * results[i].price
             }
             res.render("cart", {order : results, sum : cost});
         }
     });
 });
 
-const read_edit_item_sql = fs.readFileSync(path.join(__dirname, 
+const read_item_edit_sql = fs.readFileSync(path.join(__dirname, 
     "db", "queries", "crud", "read_item_edit.sql"),
     {encoding : "UTF-8"});
 
 /* define a route for the edit item page */
 app.get("/cart/edit/:order/:id", (req, res) => {
-    db.execute(read_edit_item_sql, [req.oidc.user.sub, req.params.order, req.params.id], (error, results) => {
-        if (error) {
-            res.status(500).send(error); 
-        } else {
+    db.execute(read_item_edit_sql, [req.oidc.user.sub, req.params.order, req.params.id], (error, results) => {
+        if (results.length == 0) {
+            res.status(404).send(`No order #${req.params.order} and/or item found with id = "${req.params.id}"`);
+        }
+        else {
             res.render("edit", {item : results[0], num : req.params.order, serial: req.params.id});
         }
     });
@@ -235,9 +232,15 @@ const update_order_item_sql = fs.readFileSync(path.join(__dirname,
 /* define a route for item UPDATE utilizing async and await */
 app.post("/cart/edit/:id", async (req, res) => {
     try {
-        let [results, fields1] = await db.execute(read_order_id_null_sql, [req.oidc.user.sub]);
-        db.execute(update_order_item_sql, [req.body.quantity, req.body.notes, req.params.id, results[0]]);
-        res.redirect(`/cart`);
+        db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
+            console.log("about to be updating")
+            // console.log(req.body.quantity)
+            // console.log(req.body.notes)
+            // console.log(req.params.id)
+            // console.log(results[0].order_id)
+            db.execute(update_order_item_sql, [req.body.quantity, req.body.notes, req.params.id, results[0].order_id]);
+            res.redirect(`/cart`);
+        });
     }
     catch (error) {
         res.status(500).send(error); 

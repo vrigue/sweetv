@@ -42,13 +42,13 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <form>
+                <form method = "post" action = <%= "/cart/edit/" + serial %>>
                     <fieldset>
                       <legend class = "regular">Item Information:</legend>
                       <div class="row">
                         <div class="col-sm-12 col-md-6">
                           <label for="quantity" class = "regular">Quantity:</label>
-                          <input type="number" id="quantity" value="<%= item.quantity %>" class = "regular"/>
+                          <input type="number" name="quantity" id="quantity" value=<%= item.quantity %> class = "regular"/>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="item" class = "regular">Notes:</label>
@@ -63,10 +63,12 @@
                             <input type="number" name = "num" id="num" class="regular readonly-input" readonly value=<%= num %>>
                         </div>
                     </fieldset>
+                    <div class="center">
+                        <a href=""><button class="btn regular" type = "submit">Save Changes</button></a>
+                        <a href="/cart"><button class="btn regular">Back to Cart</button></a>
+                    </div>
                   </form>
-                <div class="center">
-                    <a href=""><button class="btn regular" type = "submit">Save Changes</button></a>
-                </div>
+                
             </div>
         </div>
     </div>

@@ -37,6 +37,7 @@
                     <tr>
                       <th class = "regular">Item:</th>
                       <th class = "regular">Quantity:</th>
+                      <th class = "regular">Price Per:</th>
                       <th class = "regular">Total:</th>
                       <th class = "regular">Notes:</th>
                       <th></th>
@@ -48,7 +49,10 @@
                             <td class = "regular"><%= order[i].item_name %></td>
                             <td class = "regular"><%= order[i].quantity %></td>
                             <td class = "regular">
-                                <%= ((order[i].quantity / 12) * order[i].price_dozen + (order[i].quantity % 12) * order[i].price).toFixed(2).toString()%>
+                                <%=  " \n(" + order[i].price.toFixed(2) + " /1)\n(" + order[i].price_dozen.toFixed(2) + "/12)" %>
+                            </td>
+                            <td class = "regular">
+                                <%= "$" + ((((order[i].quantity - (order[i].quantity % 12)) / 12) * order[i].price_dozen + (order[i].quantity % 12) * order[i].price).toFixed(2).toString()).toString()%>
                             </td>
                             <td class = "regular"><%= order[i].notes %></td>
                             <td>
