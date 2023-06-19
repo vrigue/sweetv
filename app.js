@@ -161,12 +161,12 @@ app.post( "/add_to_cart", ( req, res ) => {
         db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
             if (results.length < 1) {
                 db.execute(create_order_sql, [req.oidc.user.sub], (error2, results2) => {
-                    console.log(results2);
                     db.execute(create_order_item_sql, [req.body.serial, results2.insertId, req.body.quantity, req.body.notes], (error3, results3) => {
                         if (error3)
                             res.status(500).send(error3);
                     });
                 });
+                res.redirect(`/cart`);
             }
             else {
                 db.execute(read_item_edit_sql, [req.oidc.user.sub, results[0].order_id, req.body.serial], (error3, results3) => {
@@ -230,11 +230,6 @@ const update_order_item_sql = fs.readFileSync(path.join(__dirname,
 app.post("/cart/edit/:id", async (req, res) => {
     try {
         db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
-            console.log("about to be updating")
-            // console.log(req.body.quantity)
-            // console.log(req.body.notes)
-            // console.log(req.params.id)
-            // console.log(results[0].order_id)
             db.execute(update_order_item_sql, [req.body.quantity, req.body.notes, req.params.id, results[0].order_id]);
             res.redirect(`/cart`);
         });
@@ -252,11 +247,6 @@ const delete_order_item_sql = fs.readFileSync(path.join(__dirname,
 app.get("/cart/delete/:id", async (req, res) => {
     try {
         db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
-            console.log("about to be deleting")
-            console.log(results)
-            // console.log(req.body.notes)
-            // console.log(req.params.id)
-            // console.log(results[0].order_id)
             db.execute(delete_order_item_sql, [req.params.id, results[0].order_id]);
             res.redirect(`/cart`);
         });        
@@ -271,10 +261,10 @@ const update_order_sql = fs.readFileSync(path.join(__dirname,
                                                 {encoding : "UTF-8"});
 
 /* define a route for order UPDATE utilizing async and await */
-app.post('/cart', async (req, res) => {
+app.get('/finalize/:id', async (req, res) => {
     try { 
-        let [results, fields] = await db.execute(read_order_id_null_sql, [req.oidc.user.sub]);
-        db.execute(update_order_sql , [date, results[0], req.oidc.user.sub]);
+        db.execute(update_order_sql , [date, req.params.id, req.oidc.user.sub]);
+        res.redirect(`/cart`);
     }
     catch (error) {
         res.status(500).send(error); 
