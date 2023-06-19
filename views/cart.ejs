@@ -52,8 +52,8 @@
                             </td>
                             <td class = "regular"><%= order[i].notes %></td>
                             <td>
-                                <button class = "main_btn regular" href=<%= "/cart/edit/" + order[i].item_id.toString()%>>Edit</button>
-                                <button class = "main_btn regular" href=<%= "/cart/delete/" + order[i].item_id.toString()%>>DELETE</button>
+                                <a href=<%= "/cart/edit/" + order[i].item_id.toString()%>><button class = "main_btn regular">Edit</button></a>
+                                <a href=<%= "/cart/delete/" + order[i].item_id.toString()%>><button class = "main_btn regular">DELETE</button></a>
                             </td>
                         </tr>
                     <% } %>
@@ -75,7 +75,7 @@
                 <h3 class="section regular">Order Placed!</h3>
                 <p class="section regular">Please check your email for your pickup date and time.
                 </p>
-                <p class="section regular">Please have $155.00 in cash ready at pickup,
+                <p class="section regular">Please have $<%= (sum + 10).toFixed(2).toString() %> in cash ready at pickup,
                     or venmo @vrielle <b class = "regular">PRIOR TO</b> your pickup.
                 </p>
                 <p class="section regular bold">If we do not receive your payment, we will NOT
