@@ -161,28 +161,25 @@ app.post( "/add_to_cart", ( req, res ) => {
         db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
             if (results.length < 1) {
                 db.execute(create_order_sql, [req.oidc.user.sub], (error2, results2) => {
-                    if (error2)
-                        res.status(500).send(error2);
-                    else {
-                        console.log(results2);
-                        db.execute(create_order_item_sql, [req.body.serial, results2.insertId, req.body.quantity, req.body.notes], (error3, results3) => {
-                            if (error3)
-                                res.status(500).send(error3);
-                        });
-                    }
+                    console.log(results2);
+                    db.execute(create_order_item_sql, [req.body.serial, results2.insertId, req.body.quantity, req.body.notes], (error3, results3) => {
+                        if (error3)
+                            res.status(500).send(error3);
+                    });
                 });
             }
             else {
-                // console.log(req.body.serial)
-                // console.log(results[0].order_id)
-                // console.log(req.body.quantity)
-                // console.log(req.body.notes)
-                db.execute(create_order_item_sql, [req.body.serial, results[0].order_id, req.body.quantity, req.body.notes], (error2, results2) => {
-                    if (error2)
-                        res.status(500).send(error2);
-                });
+                db.execute(read_item_edit_sql, [req.oidc.user.sub, results[0].order_id, req.body.serial], (error3, results3) => {
+                    if (results3.length != 0) { // duplicate, in which case it will redirect
+                        res.redirect("/cart/edit/" + results[0].order_id + "/" + req.body.serial);
+                    }
+                    else {
+                        db.execute(create_order_item_sql, [req.body.serial, results[0].order_id, req.body.quantity, req.body.notes]);
+                        res.redirect(`/cart`);
+                    }
+                }); 
             }
-            res.redirect(`/cart`);
+            
         });        
     }
     catch (error) {
