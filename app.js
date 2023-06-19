@@ -163,7 +163,6 @@ app.post( "/add_to_cart", ( req, res ) => {
                 res.status(500).send(error);
             else {
                 if (results.length < 1) {
-                    console.log("new order");
                     db.execute(create_order_sql, [req.oidc.user.sub], (error2, results2) => {
                         if (error2)
                             res.status(500).send(error2);
