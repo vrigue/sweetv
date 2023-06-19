@@ -213,13 +213,17 @@ app.get('/cart', (req, res) => {
     });
 });
 
+const read_edit_item_sql = fs.readFileSync(path.join(__dirname, 
+    "db", "queries", "crud", "read_item_edit.sql"),
+    {encoding : "UTF-8"});
+
 /* define a route for the edit item page */
-app.get("/cart/edit/:id", (req, res) => {
-    db.execute(read_item_sql, [req.params.id], (error, results) => {
+app.get("/cart/edit/:order/:id", (req, res) => {
+    db.execute(read_edit_item_sql, [req.oidc.user.sub, req.params.order, req.params.id], (error, results) => {
         if (error) {
             res.status(500).send(error); 
         } else {
-            res.render("edit", {item : results});
+            res.render("edit", {item : results[0], num : req.params.order, serial: req.params.id});
         }
     });
 });

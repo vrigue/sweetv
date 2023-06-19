@@ -17,9 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Alice&family=Parisienne&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
-    <link rel="stylesheet" href="../stylesheets/navbar.css">
-    <link rel="stylesheet" href="../stylesheets/item_detail.css">
-    <link rel="stylesheet" href="../stylesheets/add_to_cart.css">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/item_detail.css">
+    <link rel="stylesheet" href="/stylesheets/add_to_cart.css">
 </head>
 
 <body>
@@ -31,14 +31,14 @@
     </header>
 
     <div class="row secondary-back-color">
-        <h1 class="center"><small class="regular">Ube Macapuno Cookies</small></h1>
+        <h1 class="center"><small class="regular"><%= item.item_name %></small></h1>
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <div class="card fluid">
-                    <img src="..\images\ube.png" alt="ube macapuno cookies">
+                    <img src=<%= item.address %> alt=<%= item.alt %>>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -48,11 +48,19 @@
                       <div class="row">
                         <div class="col-sm-12 col-md-6">
                           <label for="quantity" class = "regular">Quantity:</label>
-                          <input type="number" id="quantity" placeholder="12" class = "regular"/>
+                          <input type="number" id="quantity" value="<%= item.quantity %>" class = "regular"/>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="item" class = "regular">Notes:</label>
-                            <input type="text" name="notes" placeholder="Add extra chocolate chips" class = "regular"/>
+                            <input type="text" name="notes" value="<%= item.notes %>" class = "regular"/>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="serial" class = "regular">Serial:</label>
+                            <input type="number" name = "serial" id="serial" class="regular readonly-input" readonly value=<%= serial %>>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="num" class = "regular">Order #:</label>
+                            <input type="number" name = "num" id="num" class="regular readonly-input" readonly value=<%= num %>>
                         </div>
                     </fieldset>
                   </form>

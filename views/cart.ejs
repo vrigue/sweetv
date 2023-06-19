@@ -52,7 +52,7 @@
                             </td>
                             <td class = "regular"><%= order[i].notes %></td>
                             <td>
-                                <a href=<%= "/cart/edit/" + order[i].item_id.toString()%>><button class = "main_btn regular">Edit</button></a>
+                                <a href=<%= "/cart/edit/" + order[i].order_id + "/" + order[i].item_id.toString()%>><button class = "main_btn regular">Edit</button></a>
                                 <a href=<%= "/cart/delete/" + order[i].item_id.toString()%>><button class = "main_btn regular">DELETE</button></a>
                             </td>
                         </tr>

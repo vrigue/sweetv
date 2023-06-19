@@ -96,10 +96,10 @@ const insert_pics = `
     VALUES 
         (?, ?);
 `
-db.execute(insert_pics, ['../images/ube.png', 'ube']);
-db.execute(insert_pics, ['../images/chocolate_chip.png', 'chocolate chip']);
-db.execute(insert_pics, ['../images/matcha.png', 'matcha white chocolate chip cookies']);
-db.execute(insert_pics, ['../images/strawberry.png', 'oatmeal strawberry cookies']);
+db.execute(insert_pics, ['/images/ube.png', 'ube']);
+db.execute(insert_pics, ['/images/chocolate_chip.png', 'chocolate chip']);
+db.execute(insert_pics, ['/images/matcha.png', 'matcha white chocolate chip cookies']);
+db.execute(insert_pics, ['/images/strawberry.png', 'oatmeal strawberry cookies']);
 
 db.execute("SELECT * FROM picture",
     (error, results) => {
