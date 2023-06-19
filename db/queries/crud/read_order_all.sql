@@ -1,4 +1,4 @@
-SELECT item_name, quantity, price, price_dozen, notes
+SELECT item.item_id, item_name, quantity, price, price_dozen, notes
 FROM order_item_xref as x
 JOIN item
 	ON x.item_id = item.item_id

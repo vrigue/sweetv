@@ -204,7 +204,11 @@ app.get('/cart', (req, res) => {
         if (error) {
             res.status(500).send(error); 
         } else {
-            res.render("cart", {order : results});
+            let cost = 0
+            for (let i = 0; i < results.length; i++) {
+                cost += (results[i].quantity / 12) * results[i].price_dozen + (results[i].quantity % 12) * results[i].price
+            }
+            res.render("cart", {order : results, sum : cost});
         }
     });
 });

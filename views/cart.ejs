@@ -43,43 +43,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class = "regular">Chocolate Chip Cookies</td>
-                        <td class = "regular">36</td>
-                        <td class = "regular">$75.00</td>
-                        <td class = "regular">Add extra chocolate chips.</td>
-                        <td>
-                            <button class = "main_btn regular" href="/cart/edit">Edit</button>
-                            <button class = "main_btn regular" href="/cart/delete">DELETE</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class = "regular">Matcha White Chocolate Chip Cookies</td>
-                        <td class = "regular">5</td>
-                        <td class = "regular">$20.00</td>
-                        <td class = "regular"></td>
-                        <td>
-                            <button class = "main_btn regular" href="/cart/edit">Edit</button>
-                            <button class = "main_btn regular" href="/cart/delete">DELETE</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class = "regular">Oatmeal Strawberry Cookies</td>
-                        <td class = "regular">24</td>
-                        <td class = "regular">$50.00</td>
-                        <td class = "regular"></td>
-                        <td>
-                            <button class = "main_btn regular" href="/cart/edit">Edit</button>
-                            <button class = "main_btn regular" href="/cart/delete">DELETE</button>
-                        </td>
-                    </tr>
+                    <% for (let i = 0; i < order.length; i++) { %>
+                        <tr>
+                            <td class = "regular"><%= order[i].item_name %></td>
+                            <td class = "regular"><%= order[i].quantity %></td>
+                            <td class = "regular">
+                                <%= ((order[i].quantity / 12) * order[i].price_dozen + (order[i].quantity % 12) * order[i].price).toFixed(2).toString()%>
+                            </td>
+                            <td class = "regular"><%= order[i].notes %></td>
+                            <td>
+                                <button class = "main_btn regular" href=<%= "/cart/edit/" + order[i].item_id.toString()%>>Edit</button>
+                                <button class = "main_btn regular" href=<%= "/cart/delete/" + order[i].item_id.toString()%>>DELETE</button>
+                            </td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
         <div class = "col-sm-2">
-            <p class = "regular">Subtotal: $145.00</p>
+            <p class = "regular">Subtotal: $<%= sum.toFixed(2).toString() %></p>
             <p class = "regular">Labor Fee: $10.00</p>
-            <p class = "regular">Total: $155.00</p>
+            <p class = "regular">Total: $<%= (sum + 10).toFixed(2).toString() %></p>
 
             <button class = "btn regular" href="/cart">
                 <label for="modal-control" class = "regular">PLACE ORDER NOW</label>
