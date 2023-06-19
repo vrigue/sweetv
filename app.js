@@ -156,19 +156,41 @@ const create_order_item_sql = fs.readFileSync(path.join(__dirname,
                                                 {encoding : "UTF-8"});
 
 /* define a route for item CREATE utilizing async and await */
-app.post( "/add_to_cart/:id", async ( req, res ) => {
+app.post( "/add_to_cart", ( req, res ) => {
     try {
-        let [results1, fields1] = await db.execute(read_order_id_null_sql, [req.oidc.user.sub]);
-        if (results1[0] == null) {
-            let [results2, fields2] = await db.execute(create_order_sql, [req.oidc.user.sub, null]);
-            db.execute(create_order_item_sql, [req.params.id, results2.order_id, req.body.quantity, req.body.notes]);
-        }
-        else {
-            db.execute(create_order_item_sql, [req.params.id, results1[0], req.body.quantity, req.body.notes]);
-        }
-        res.redirect(`/cart`);
+        db.execute(read_order_id_null_sql, [req.oidc.user.sub], (error, results) => {
+            if (error)
+                res.status(500).send(error);
+            else {
+                if (results.length < 1) {
+                    console.log("new order");
+                    db.execute(create_order_sql, [req.oidc.user.sub], (error2, results2) => {
+                        if (error2)
+                            res.status(500).send(error2);
+                        else {
+                            console.log(results2);
+                            db.execute(create_order_item_sql, [req.body.serial, results2.insertId, req.body.quantity, req.body.notes], (error3, results3) => {
+                                if (error3)
+                                    res.status(500).send(error3);
+                            });
+                        }
+                    });
+                }
+                else {
+                    // console.log(req.body.serial)
+                    // console.log(results[0].order_id)
+                    // console.log(req.body.quantity)
+                    // console.log(req.body.notes)
+                    db.execute(create_order_item_sql, [req.body.serial, results[0].order_id, req.body.quantity, req.body.notes], (error2, results2) => {
+                        if (error2)
+                            res.status(500).send(error2);
+                    });
+                }
+                res.redirect(`/cart`);
+            }
+        });        
     }
-    catch {
+    catch (error) {
         res.status(500).send(error); 
     }
 });
@@ -210,7 +232,7 @@ app.post("/cart/edit/:id", async (req, res) => {
         db.execute(update_order_item_sql, [req.body.quantity, req.body.notes, req.params.id, results[0]]);
         res.redirect(`/cart`);
     }
-    catch {
+    catch (error) {
         res.status(500).send(error); 
     }
 });
@@ -226,7 +248,7 @@ app.post("/cart/delete/:id", async (req, res) => {
         db.execute(delete_order_item_sql, [req.params.id, results[0]]);
         res.redirect(`/cart`);
     }
-    catch {
+    catch (error) {
         res.status(500).send(error); 
     }
 });
@@ -241,7 +263,7 @@ app.post('/cart', async (req, res) => {
         let [results, fields] = await db.execute(read_order_id_null_sql, [req.oidc.user.sub]);
         db.execute(update_order_sql , [date, results[0], req.oidc.user.sub]);
     }
-    catch {
+    catch (error) {
         res.status(500).send(error); 
     }
 });
