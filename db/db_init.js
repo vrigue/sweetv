@@ -61,14 +61,14 @@ const insert_items = `
     VALUES 
         (?, ?, ?, ?, ?, ?);
 `
-db.execute(insert_items, ['Ube Macapuno Cookies', 'Ube (mashed), flour, sugar, butter, macapuno,',
-    'Milk, Wheat', 'Overall, a very yummy (and more importantly purple).', '4.75', '25']);
-db.execute(insert_items, ['Chocolate Chip Cookies', 'Flour, sugar, butter, dark chocolate, milk',
-    'Milk, Wheat', 'Your basic chocolate chip cookie.', '4.50', '25']);
-db.execute(insert_items, ['Matcha White Chocolate Chip Cookies', 'Matcha powder, white chocolate, wheat, flour,',
-    'Milk, Wheat', 'A great green cookie! Made with the finest ceremonial grade matcha powder.', '4.75', '25']);
-db.execute(insert_items, ['Oatmeal Strawberry Cookies', 'Oatmeal, strawberry, butter, wheat',
-    'Milk, Wheat', 'A comfort choice.', '4.75', '25']);
+db.execute(insert_items, ['Ube Macapuno Cookies', 'Ube, flour, sugar, butter, macapuno, eggs, ube extract',
+    'Dairy, Wheat, Eggs', 'Overall, a very yummy (and more importantly purple) cookie.', '4.75', '45']);
+db.execute(insert_items, ['Chocolate Chip Cookies', 'Flour, sugar, butter, dark chocolate, eggs, vanilla',
+    'Dairy, Wheat, Eggs', 'Your basic chocolate chip cookie.', '4.50', '40']);
+db.execute(insert_items, ['Matcha White Chocolate Chip Cookies', 'Matcha powder, flour, sugar, butter, white chocolate, eggs',
+    'Dairy, Wheat, Eggs', 'A great green cookie! Made with the finest ceremonial grade matcha powder.', '4.75', '45']);
+db.execute(insert_items, ['Oatmeal Strawberry Cookies', 'Oatmeal, flour, sugar, butter, freeze-dried strawberries, eggs',
+    'Dairy, Wheat, Eggs', 'A comfort choice.', '4.75', '42']);
 
 db.execute("SELECT * FROM item",
     (error, results) => {

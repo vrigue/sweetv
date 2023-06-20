@@ -45,12 +45,6 @@ const config = {
 };
 
 const dateObject = new Date();
-let date = dateObject.getFullYear() + "-" + 
-           ("0" + (dateObject.getMonth() + 1)).slice(-2) + 
-           ("0" + dateObject.getDate()).slice(-2) + " " + 
-           dateObject.getHours() + ":" + 
-           dateObject.getMinutes() + ":" + 
-           dateObject.getSeconds();
 
 app.use(auth(config));
 
@@ -263,7 +257,7 @@ const update_order_sql = fs.readFileSync(path.join(__dirname,
 /* define a route for order UPDATE utilizing async and await */
 app.get('/finalize/:id', async (req, res) => {
     try { 
-        db.execute(update_order_sql , [date, req.params.id, req.oidc.user.sub]);
+        db.execute(update_order_sql , [dateObject.toJSON(), req.params.id, req.oidc.user.sub]);
         res.redirect(`/cart`);
     }
     catch (error) {

@@ -43,16 +43,15 @@ caption {
 }
 
 footer {
-    margin-top: 160px;
+    margin-top: 390px;
 }
 
-.card {
-    width: 1000px;
-    height: auto;
+h3 {
+    font-size: 20px;
 }
 
 .card p {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 label {
@@ -61,6 +60,10 @@ label {
 
 .bold {
     font-weight: bolder;
+}
+
+.center {
+    text-align: center;
 }
 
 /* .order {
