@@ -156,11 +156,9 @@ app.post( "/add_to_cart", ( req, res ) => {
             if (results.length < 1) {
                 db.execute(create_order_sql, [req.oidc.user.sub], (error2, results2) => {
                     db.execute(create_order_item_sql, [req.body.serial, results2.insertId, req.body.quantity, req.body.notes], (error3, results3) => {
-                        if (error3)
-                            res.status(500).send(error3);
+                        res.redirect(`/cart`);
                     });
                 });
-                res.redirect(`/cart`);
             }
             else {
                 db.execute(read_item_edit_sql, [req.oidc.user.sub, results[0].order_id, req.body.serial], (error3, results3) => {
